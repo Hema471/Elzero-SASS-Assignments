@@ -1,0 +1,144 @@
+// Assignment 01
+
+@mixin arrow($arrowDir) {
+  content: "";
+  position: absolute;
+  border: 20px solid transparent;
+  @if $arrowDir == "top" {
+    left: 50%;
+    transform: translateX(-50%);
+    top: -40px;
+    border-bottom-color: red;
+  } @else if $arrowDir == "right" {
+    top: 50%;
+    transform: translateY(-50%);
+    right: -40px;
+    border-left-color: red;
+  } @else if $arrowDir == "bottom" {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -40px;
+    border-top-color: red;
+  } @else if $arrowDir == "left" {
+    top: 50%;
+    transform: translateY(-50%);
+    left: -40px;
+    border-right-color: red;
+  }
+}
+
+.element {
+  &:before {
+    @include arrow("top");
+  }
+}
+.element {
+  &:before {
+    @include arrow("right");
+  }
+}
+.element {
+  &:before {
+    @include arrow("bottom");
+  }
+}
+.element {
+  &:before {
+    @include arrow("left");
+  }
+}
+
+// Assignment 02
+
+$cols: 16;
+@for $i from 1 through $cols {
+  .col-#{$i} {
+    width: #{($i / $cols) * 100%};
+    // width: percentage($i / $cols);
+  }
+  $i: $i + 1;
+}
+
+// Assignment 03
+
+$names: "books" 20px red 18, "games" 30px green 18, "dvds" 20px blue;
+// The Same
+// $names:
+//   "books" 20px red 18,
+//   "games" 30px green 18,
+//   "dvds" 20px blue;
+
+@each $name, $padding, $color, $font in $names {
+  .#{name} {
+    padding: $padding;
+    font-size: if($font, #{$font}px, 16px);
+    border-bottom: 2px solid $color;
+    color: $color;
+  }
+}
+
+// Assignment 04
+
+$init: 1;
+@while ($init < 6) {
+  .circle-#{($init) * 100} {
+    width: $init * 100px;
+    height: $init * 100px;
+    border-radius: ($init * 100px) / 2;
+  }
+  $init: $init + 1;
+}
+
+// Assignment 05
+
+@for $i from 1 to 6 {
+  .circle-#{($init) * 100} {
+    width: $init * 100px;
+    height: $init * 100px;
+    border-radius: ($init * 100px) / 2;
+  }
+  $init: $init + 1;
+}
+
+// Assignment 06
+
+// @content; => make the Mixin accepts the block content => {}
+@mixin placeholder() {
+  &.placeholder {
+    @content; // Include the block of styles passed to the mixin
+  }
+  &:-moz-placeholder {
+    @content;
+  }
+  &::-moz-placeholder {
+    @content;
+  }
+  &:-ms-input-placeholder {
+    @content;
+  }
+  &::-webkit-input-placeholder {
+    @content;
+  }
+}
+
+textarea {
+  @include placeholder {
+    color: #777;
+  }
+}
+
+// Assignment 07
+
+@mixin flex-center($num: 400px) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $num;
+}
+
+.box-one {
+  @include flex-center(400px);
+}
+.box-two {
+  @include flex-center;
+}

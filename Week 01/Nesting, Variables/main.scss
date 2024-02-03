@@ -1,0 +1,194 @@
+// Assignment 01
+
+.content {
+  > .box {
+    padding: 15px;
+  }
+
+  > .title {
+    font-size: 18px;
+  }
+
+  .cat {
+    padding: 15px;
+  }
+
+  &.premium {
+    &:before {
+      content: "Premium Box";
+    }
+
+    &:hover {
+      background-color: #eee;
+    }
+  }
+}
+
+// Assignment 02
+
+.class {
+  > .child {
+    padding: 10px;
+  }
+}
+
+.class {
+  & > .child {
+    padding: 10px;
+  }
+}
+
+.class {
+  & {
+    > .child {
+      padding: 10px;
+    }
+  }
+}
+
+// Assignment 03
+
+.class {
+  & {
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
+
+.class {
+  $font-weight: bold;
+  $font-size: 20px;
+
+  font: {
+    weight: $font-size;
+    size: $font-weight;
+  }
+}
+
+.class {
+  $font-weight: bold;
+  $font-size: 20px;
+
+  font: #{$font-weight} #{$font-weight};
+}
+
+// Assignment 04
+// Output
+.parent + .sibling {
+  margin: auto;
+  margin-top: 10px;
+}
+
+.parent + .sibling ~ .last {
+  padding: 10px;
+}
+
+// In CSS, the tilde (~) symbol is used as a sibling combinator in selectors. It selects all siblings that match the following selector.
+// The & refers to the .parent selector. In this context, the & represents the current selector, so & + .sibling refers to the .parent followed immediately by a .sibling element, and & ~ .last refers to the .parent followed by any .last sibling.
+
+// Assignment 05
+
+%mix_1 {
+  background-color: white;
+  padding: 20px;
+}
+
+%mix_2 {
+  border: 1px solid #ccc;
+}
+
+.widget {
+  @extend %mix_1;
+}
+
+.main-border {
+  @extend %mix_2;
+}
+
+.my-class {
+  @extend %mix_1;
+  @extend %mix_2;
+  font-weight: bold;
+  margin: 20px auto;
+}
+
+// Assignment 06
+
+%widget {
+  background-color: white;
+  padding: 20px;
+}
+
+%main-border {
+  border: 1px solid #ccc;
+}
+
+.my-class {
+  @extend %widget;
+}
+
+.my-class {
+  @extend %main-border;
+}
+
+.my-class {
+  font-weight: bold;
+  margin: 20px auto;
+}
+
+// Assignment 07
+
+$font-size: 20px;
+$mobile-font-size: 16px;
+
+.box {
+  h2,
+  p {
+    font-size: $font-size;
+    @media (max-width: 575px) {
+      & {
+        font-size: $mobile-font-size;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+// Assignment 08
+
+$red: #e91e63;
+$green: #009688;
+
+$link-color: $green;
+$link-hover: $red;
+
+.box a {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover;
+  }
+}
+
+// Assignment 09
+
+@use "./Project_Folder/Helpers/_vars.scss";
+@use "./Project_Folder/Helpers/_functions.scss";
+@use "./Project_Folder/Layout/_header.scss";
+@use "./Project_Folder/Layout/_footer.scss";
+
+// Assignment 10
+
+.box {
+  font-size: 20px;
+
+  &-holder {
+    width: 1000px;
+
+    &-content {
+      margin: auto;
+    }
+  }
+}
